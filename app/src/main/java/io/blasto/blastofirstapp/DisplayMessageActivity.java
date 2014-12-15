@@ -17,13 +17,15 @@ public class DisplayMessageActivity extends ActionBarActivity {
         Intent intent = getIntent();
         // Extracts extra that was passed earlier
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-
+        // Format style of that text
         TextView textView = new TextView(this);
-        textView.setTextSize(40);
         textView.setText(message);
 
         setContentView(textView);
+
+        // Add icon to back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

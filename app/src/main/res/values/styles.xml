@@ -1,10 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.V14.Theme.AppCompat">
-        <item name="android:typeface">monospace</item>
-        <item name="android:actionBarItemBackground">@color/primary_dark_material_dark</item>
-        <item name="android:actionModeBackground">@color/primary_dark_material_dark</item>
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="actionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid.Inverse">@style/CustomActionBar</item>
+        <item name="actionMenuTextColor">@color/abc_primary_text_material_light</item>
+        <item name="actionBarTabStyle">@style/MyActionBarTabs</item>
+    </style>
+
+    <!-- ActionBar tabs styles -->
+    <style name="MyActionBarTabs"
+        parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
+        <!-- tab indicator -->
+        <item name="background">@drawable/abc_tab_indicator_material</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="CustomActionBar"
+        parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/material_deep_teal_500</item>
     </style>
 
 </resources>
