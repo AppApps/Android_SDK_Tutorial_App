@@ -1,12 +1,15 @@
 package io.blasto.blastofirstapp;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -15,9 +18,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        setContentView(R.layout.activity_main);
+        batteryLevel();
     }
 
 
@@ -41,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
                 //openSearch();
                 return true;
             case R.id.action_settings:
-                //openSettings();
+                openSettings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -55,6 +60,21 @@ public class MainActivity extends ActionBarActivity {
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+    }
+
+    public void openSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void batteryLevel() {
+        TextView textView = (TextView) findViewById(R.id.battery_level);
+        Intent batteryIntent = registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        float level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        float scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+        // textView.setText("Testing Meow Meow Meow");
+        textView.setText(String.valueOf((level / scale) * 100) + '%');
     }
 
 }
