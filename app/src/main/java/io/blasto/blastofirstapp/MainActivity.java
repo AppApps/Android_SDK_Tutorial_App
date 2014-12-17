@@ -20,9 +20,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         setContentView(R.layout.activity_main);
         batteryLevel();
+
     }
 
 
@@ -43,6 +45,9 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         switch (item.getItemId()) {
             case R.id.action_search:
+                //openSearch();
+                return true;
+            case R.id.drawer_layout:
                 //openSearch();
                 return true;
             case R.id.action_settings:
